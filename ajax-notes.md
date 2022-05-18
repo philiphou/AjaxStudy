@@ -45,5 +45,13 @@
                   .....
                </html>
     # Nodemon 帮助自动重启服务器的应用；
+        1. 安装
+            npm install -g nodemon
+        2. 运行： 
+            nodemon server.js
+        3. 如果运行错误，可以尝试： 
+                nodemon.cmd server.js 
+                或者
+                npx nodemon server.js
               
 

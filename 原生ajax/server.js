@@ -4,11 +4,14 @@ const express = require('express')
 const app = express();
 // 3.创建路由规则
 // request 是对请求报文的封装； respnse 是对响应报文的封装
-app.get('/server', (request, response) => {
+app.get('/server-delay', (request, response) => {
     // 设置一个响应头，设置允许跨域
     response.setHeader("Access-Control-Allow-Origin", "*")
-        // 设置一个响应：
-    response.send('hello AJAX')
+        // 加一个定时器
+    setTimeout(() => { // 设置一个响应：
+        response.send('请求顺利吗,延时了？')
+    }, 3000)
+
 
 
 })
@@ -34,7 +37,7 @@ app.all('/json-server', (request, response) => {
     response.setHeader("Access-Control-Allow-Origin", "*")
     response.setHeader("Access-Control-Allow-Headers", "*")
         // 设置一个响应数据对象：
-    const student = { name: "philip", age: 35, Gender: "Male" }
+    const student = { name: "philip" }
         // 对响应数据对象做一个转换：进行字符串转换
     let str = JSON.stringify(student)
         //  response.send 传递的参数只能是字符串，所以要进行json转换
