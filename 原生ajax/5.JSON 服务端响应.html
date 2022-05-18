@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX JSON REQUEST</title>
+    <style>
+        #result {
+            width: 200px;
+            height: 200px;
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="result"></div>
+    <script>
+        // 获取元素
+        var result = document.getElementById('result')
+            // 绑定键盘按下事件
+        window.onkeydown = () => {
+
+            // 创建对象
+            const xhr = new XMLHttpRequest()
+                // 设置响应体数据类型自动转换数据格式
+            xhr.responseType = 'json'
+                // 初始化对象
+            xhr.open("GET", "http://127.0.0.1:8000/json-server")
+                // 发送请求体
+            xhr.send()
+                // 处'name=philip'理事件
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState = 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // result.innerHTML = xhr.response;
+                        // console.log(xhr.response)
+                        // 手动对数据进行转换
+                        // let data = JSON.parse(xhr.response)
+                        // console.log(data)
+                        // result.innerHTML = data.name
+                        //自动转换
+                        var data = xhr.response
+                        console.log(data)
+                        result.innerHTML = data.name
+
+
+                    }
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
