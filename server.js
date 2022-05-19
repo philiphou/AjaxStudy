@@ -4,17 +4,23 @@ const express = require('express')
 const app = express();
 // 3.创建路由规则
 // request 是对请求报文的封装； respnse 是对响应报文的封装
-app.get('/server-delay', (request, response) => {
-    // 设置一个响应头，设置允许跨域
-    response.setHeader("Access-Control-Allow-Origin", "*")
-        // 加一个定时器
-    setTimeout(() => { // 设置一个响应：
-        response.send('请求顺利吗,延时了？')
-    }, 3000)
-
-
-
+app.all('/server-delay', (request, response) => {
+        // 设置一个响应头，设置允许跨域
+        response.setHeader("Access-Control-Allow-Origin", "*")
+        response.setHeader("Access-Control-Allow-Headers", "*")
+            // 加一个定时器
+        setTimeout(() => { // 设置一个响应：
+            let data = { name: "beijing" }
+            response.send(JSON.stringify(data))
+        }, 20)
+    })
+    // 设置jQuery 响应
+app.all('/server-jquery', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    let data = { name: "yunhui", age: 30, home: "beijing" }
+    res.send(JSON.stringify(data))
 })
+
 app.post('/server', (request, response) => {
         // 设置一个响应头，设置允许跨域
         response.setHeader("Access-Control-Allow-Origin", "*")

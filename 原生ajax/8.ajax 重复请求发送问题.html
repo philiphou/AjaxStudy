@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请求超时与网络异常</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <button>点击发送请求</button>
+    <button> 点击取消</button>
+
+    <script>
+        // 获取元素
+        const btns = document.querySelectorAll("button")
+        let xhr = null
+        let isPending = 0;
+        btns[0].onclick = () => {
+                if (!isPending) {
+                    xhr = new XMLHttpRequest()
+                    xhr.open('GET', "http://127.0.0.1:8000/server-delay")
+                    xhr.send()
+                    isPending = 1;
+                    if (xhr.readyState === 4) {
+                        isPending = 0;
+                    }
+                } else {
+                    xhr.abort()
+                    isPending = 0;
+                }
+            }
+            // 取消请求，需要借助 abort 属性方法，属于ajax 对象，也就是xhr 对象
+
+        btns[1].onclick = function() {
+            xhr.abort()
+        }
+    </script>
+
+</body>
+
+</html>
