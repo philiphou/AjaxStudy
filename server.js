@@ -20,6 +20,13 @@ app.all('/server-jquery', (req, res) => {
     let data = { name: "yunhui", age: 30, home: "beijing" }
     res.send(JSON.stringify(data))
 })
+app.all('/server-axios', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Headers", "*")
+    res.setHeader("Access-Control-Allow-Methods", "*")
+    let data = { name: "liyi", age: 30, home: "panjin" }
+    res.send(JSON.stringify(data))
+})
 
 app.post('/server', (request, response) => {
         // 设置一个响应头，设置允许跨域
