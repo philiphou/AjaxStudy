@@ -53,5 +53,19 @@
                 nodemon.cmd server.js 
                 或者
                 npx nodemon server.js
-              
+    #   同源策略
+        1. 同源策略（Same-Origin) 是最早由Netscape 公司提出， 是浏览器的一种安全策略
+        2. 同源：协议 域名 端口号 必须完全相同； Ajax是默认遵循同源策略的。
+        3. 违背同源策略就是跨域： 单台服务器服务有上限，性能有限，有可能多台服务器服务；形成跨域；
+        4. 如何解决跨域：
+            -  JSONP
+               -- JSONP (JSON with Padding) 是一个非官方的跨域解决方案，纯粹凭程序员的聪明才智开发出来，只支持get 请求
+               -- JSONP的工作原理： 
+                    在网页中有一些标签天生具有跨域能力，比如 img link iframe script
+                    JSONP 就是利用script 标签的跨域能力来发送请求的
+            -JSONP 的使用
+                - 动态创建一个script 标签
+                    var script =document.createElement("script")
+                - 设置script 的src 设置回调函数
+                      script.src="http://localhost:3000/testAJAX?callback=abc"
 
