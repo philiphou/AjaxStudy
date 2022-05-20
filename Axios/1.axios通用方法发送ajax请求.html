@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios 通用型发送 Ajax 请求</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+</head>
+
+<body>
+    <button>GET</button>
+    <button>POST</button>
+    <button>AJAX 通用方式</button>
+
+    <script>
+        const btns = document.querySelectorAll("button")
+            // 配置 baseurl
+        axios.defaults.baseURL = "http://127.0.0.1:8000";
+        btns[0].onclick = function() {
+            // GET 请求
+            axios.get(
+                // 1. URL 参数
+                '/server-axios',
+                // 2. 发送体，我们可以用一个对象表示
+                {
+                    // 发送体重可以设置url 参数：  
+                    params: {
+                        id: 100,
+                        vip: 007
+                    },
+                    // 3. 也可以设置请求头信息
+                    headers: {
+                        name: 'liyi',
+                        age: 20
+                    }
+                }
+            ).then(value => {
+                console.log(value)
+            })
+        }
+        btns[1].onclick = function() {
+            axios.post(
+                // url
+                '/server-axios',
+                // 设置请求体
+                {
+                    user: "admin",
+                    id: 007
+                },
+                // 其他配置 config
+                {
+                    //    设置url参数
+                    params: {
+                        name: "liyi",
+                        age: 18
+                    },
+                    //   请求头参数
+                    headers: {
+                        name: "hou",
+                        age: 35
+                    }
+
+                }
+            ).then(data => {
+                console.log(data.data.home)
+            })
+        }
+
+        btns[2].onclick = function() {
+            // 直接调用axios()方法，参数传入一个对象，对象是键值对，包含各个属性
+            axios({
+                // 0. 请求方法：
+                method: 'POST',
+                // 1. url
+                url: "/server-axios",
+                // 2. url 参数
+                params: {
+                    user: "liyitian",
+                    id: 520
+                },
+                // 3. 头信息
+                headers: {
+                    a: 5,
+                    b: 10
+
+                },
+                // 4. 请求体：
+                data: {
+                    subject: "full-stack",
+                    date: 2022
+                }
+
+            }).then(response => {
+                console.log(response)
+                    // 响应状态码
+                console.log(response.status)
+                    // 响应状态的返回数据体
+                console.log(response.data)
+            })
+
+
+
+        }
+    </script>
+</body>
+
+</html>

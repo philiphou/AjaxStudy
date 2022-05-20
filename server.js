@@ -1,4 +1,5 @@
 // 1.引入 express
+const { response } = require('express');
 const express = require('express')
     // 2. 创建对象
 const app = express();
@@ -56,6 +57,12 @@ app.all('/json-server', (request, response) => {
         //  response.send 传递的参数只能是字符串，所以要进行json转换
     response.send(str)
 
+})
+app.all('/server-fetch', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*")
+    res.setHeader("Access-Control-Allow-Headers", "*")
+    let data = { city: "toronto", distance: 500 }
+    res.send(JSON.stringify(data))
 })
 
 //4.监听端口启动服务

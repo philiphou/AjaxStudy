@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fetch 发送ajax 请求</title>
+</head>
+
+<body>
+    <button>fetch发送ajax 请求</button>
+
+</body>
+<script>
+    /*
+                                                                                                                    1. fetch 函数是属于全局对象的，可以直接调用；
+                                                                                                                    2. fetch返回的结果是一个 promise 对象；
+                                                                                                                    3. fetch 函数接收两个参数 : url 和一个可选的配置项；
+                                                                                                                    */
+    let btns = document.getElementsByTagName('button')
+    btns[0].onclick = function() {
+        // url 的params 参数可以直接写在fetch 的url 中
+
+        fetch("http://127.0.0.1:8000/server-fetch?user=liyi&id=520", {
+            // 1. 请求方法
+            method: "POST",
+            // 2. 请求头
+            headers: {
+                a: 100,
+                b: 200
+            },
+
+            // 4. 请求体, 是一个 body 属性，属性值是字符串,也可以是对象，我们使用一下字符串, 
+            body: "year=2022&address=toronto"
+
+        }).then(response => {
+            //    获取响应体。响应体是个对象，里面有个方法 叫 text(),调用后就得到响应体的数据，如果想用json格式，可以直接调用： return response.json（）
+            return response.json()
+        }).then(res => {
+            console.log(res)
+        })
+
+    }
+</script>
+
+</html>
