@@ -6,11 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSONP 原理演示</title>
-    <script src="./js/app.js"></script>
+    <style>
+        .result {
+            border: solid red 1px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+
+
 </head>
 
 <body>
+    <div class="result">
 
+    </div>
+    <script>
+        function handler(data) {
+            var rst = document.getElementsByClassName('result')
+            rst[0].innerHTML = data.name
+            console.log(data.name)
+        }
+    </script>
+    <!-- jsonp 实现跨域请求： -->
+    <script src="http://127.0.0.1:8000/server-jsonp"></script>
 </body>
 
 </html>

@@ -69,3 +69,10 @@
                 - 设置script 的src 设置回调函数
                       script.src="http://localhost:3000/testAJAX?callback=abc"
 
+    # 跨域的解决方案 CROS
+        1. CROS (cross-origin resource sharing) 跨域资源共享。 CROS 是官方的跨域解决方案，它的特点是不需要在客户端做任何特殊的操作，完全在服务器中进行处理，支持 get 和 post  请求， 跨域资源共享标准新增了一组HTTP首部字段，允许服务器声明哪些源站通过浏览器有权限访问哪些资源
+        2. CROS是通过设置一个响应头来告诉浏览器，该请求允许跨域，浏览器收到该响应以后就会对响应进行放行
+        3. CROS 主要是服务器端的设置： 
+            router.get("/testAJAX",function(req,res){
+                
+            })

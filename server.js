@@ -59,11 +59,44 @@ app.all('/json-server', (request, response) => {
 
 })
 app.all('/server-fetch', (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "*")
-    res.setHeader("Access-Control-Allow-Headers", "*")
-    let data = { city: "toronto", distance: 500 }
-    res.send(JSON.stringify(data))
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.setHeader("Access-Control-Allow-Headers", "*")
+        let data = { city: "toronto", distance: 500 }
+        res.send(JSON.stringify(data))
+    })
+    // 设置 JSONP 响应
+app.all("/server-jsonp", (req, res) => {
+    const data = { name: "liyitian" }
+    const str = JSON.stringify(data)
+    res.end(`handler(${str})`)
 })
 
-//4.监听端口启动服务
+
+//  用户名后台检测响应
+
+app.all("/server-user", (req, res) => {
+        const data = {
+            exist: 1,
+            msg: "已经存在"
+        }
+        let str = JSON.stringify(data)
+            // res.send(str)
+        res.end(`handler(${str})`)
+    })
+    // jQuery 发送JSON 请求响应
+app.all("/server-jqueryjsonp", (req, res) => {
+        const data = { name: "liyitian" }
+        const str = JSON.stringify(data)
+            // 接收前端发送的callback 参数： 
+        var cb = req.query.callback
+
+        res.end(`${cb}(${str})`)
+
+    })
+    // 设置cros 请求响应
+app.all('/server-cros', (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "*")
+        res.send('hello cros')
+    })
+    //4.监听端口启动服务
 app.listen(8000, () => { console.log('server is running at port 8000....') })
